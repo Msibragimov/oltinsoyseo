@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %} 
+{% load static %}
+{% block content %}
+	  <section class="article container">
+		  <div class="contact--info" >
+			<div class="head--router">
+				<a href="index.html">Bosh sahifa</a>
+				<span class="icon-chevrone"></span>
+				<p>Profilaktika</p>
+			</div>
+			<div class="contact--info--more">
+				<h1 style="font-weight: bold;">Bog‘lanish</h1>
+				<p><span>Manzil:</span>{{contact.manzil}}</p>
+				<p><span>Telefon:</span>{{contact.telefon}}</p>
+				<p><span>Mo‘ljal:</span>{{contact.moljalari}}</p>
+			</div>
+			  			  
+		</div>
+			<div class="slider  article--other" >
+				<h3>Tasodifiy maqolalar</h3>
+				<div class="slider-list">
+					<div class="slider-list__item">
+					  {% for post in random_posts %}
+						  <article class="article--other__item">
+							  <div class="article--otherItem__img">
+								  <img src="{{post.image.url}}" alt="">
+								  <span>{{post.category.name}}</span>
+							  </div>
+							  <h4>{{post.title}}</h4>
+							  <a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--otherItem__link"></a>
+						  </article>
+					  {% endfor %}
+					</div>
+					<div class="slider-list__item">
+					  {% for post in random_posts %}
+						  <article class="article--other__item">
+							  <div class="article--otherItem__img">
+								  <img src="{{post.image.url}}" alt="">
+								  <span>uncategorized</span>
+							  </div>
+							  <h4>{{post.title}}</h4>
+							  <a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--otherItem__link"></a>
+						  </article>
+					  {% endfor %}
+					</div>
+					
+				  </div>
+				<div class="slider-controllers">
+				  <button type="button" class="slider-btn prevv icon-Circlechevrone"></button>
+				  <button type="button" class="slider-btn nextt icon-Circlechevrone"></button>
+				</div>			  
+		</div>
+
+	  </section>
+{% endblock %}

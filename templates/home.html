@@ -1,0 +1,198 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<section class="splide container" aria-label="Splide Basic HTML Example">
+	<div class="splide__arrows">
+		<button class="splide__arrow splide__arrow--prev icon-Circlechevrone prev"></button>
+		<button class="splide__arrow splide__arrow--next icon-Circlechevrone next"></button>
+	</div>
+	<div class="splide__track">
+		<ul class="splide__list">
+			<li class="splide__slide slide-swap">
+				{% for post in latest_posts %} {% if forloop.counter < 5 %} <div class="slide--swap__item">
+					<img src="{{ post.image.url }}" alt="" class="swap--item__img" />
+					<div class="swap--item--details">
+						<h3 class="swipe__item--theme">{{ post.title }}</h3>
+						<h4>
+							{{post.author}} <span>- {{ post.created_at|date:"m-d,Y" }}</span>
+						</h4>
+						<p></p>
+					</div>
+					<div class="swap--item__category">{{post.category.name}}</div>
+					<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="swap--item__link"></a>
+	</div>
+	{% endif %} {% endfor %}
+	</li>
+	<li class="splide__slide slide-swap">
+		{% for post in top_posts %} {% if forloop.counter < 5 %} <div class="slide--swap__item">
+			<img src="{{post.image.url}}" alt="" class="swap--item__img" />
+			<div class="swap--item--details">
+				<h3 class="swipe__item--theme">{{post.title}}</h3>
+				<h4>
+					{{post.author}} <span>- {{post.created_at|date:"m-d,Y"}}</span>
+				</h4>
+				<p></p>
+			</div>
+			<div class="swap--item__category">{{post.category.name}}</div>
+			<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="swap--item__link"></a>
+			</div>
+			{% endif %} {% endfor %}
+	</li>
+	</ul>
+	</div>
+</section>
+
+<section class="article container">
+	<div class="slider article--last">
+		<div class="popular__theme">
+			<h3>So‘nggi habarlar</h3>
+			<a href="#!">Barchani ko'rish</a>
+		</div>
+		<div class="slider-list">
+			<div class="slider-list__item">
+				{% for post in latest_posts %}
+					<article class="article--last__item">
+						<div class="article--lastItem__img">
+							<img src="{{post.image.url}}" alt="" />
+						</div>
+						<div class="article--lastItem__details">
+							<a
+								href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}">{{post.title}}</a>
+							<h6>
+								<a href="{% url 'posts_by_category' post.category.slug %}" class="article--last__category">{{post.category.name}}</a>
+								{{post.created_at}}
+							</h6>
+							<p>{{post.description}}</p>
+							<a href="#!" class="article--last__comment icon-comment">
+								<span>{{post.views}}</span></a>
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+			<div class="slider-list__item">
+				{% for post in latest_posts %}
+					<article class="article--last__item">
+						<div class="article--lastItem__img">
+							<img src="{{post.image.url}}" alt="" />
+						</div>
+						<div class="article--lastItem__details">
+							<a
+								href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}">{{post.title}}</a>
+							<h6>
+								<a href="{% url 'posts_by_category' post.category.slug %}" class="article--last__category">{{post.category.name}}</a>
+								{{post.created_at}}
+							</h6>
+							<p>{{post.description}}</p>
+							<a href="#!" class="article--last__comment icon-comment">
+								<span>{{post.views}}</span></a>
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="slider-controllers">
+				<button type="button" class="slider-btn prevv icon-Circlechevrone"></button>
+				<button type="button" class="slider-btn nextt icon-Circlechevrone"></button>
+		</div>			  
+	</div>
+	<div class="slider article--other">
+		<div class="article--other--telegram">
+			<article class="article--other__item telegram--post">
+				<div class="article--otherItem__img">
+					<img src="{% static 'asssets/images/unnamed.png' %}" alt="">
+				</div>
+				<h4>Telegram kanalimiz</h4>
+				<div class="telegram--send">
+					<p>Oltinsoy tumani Sanitariya-epidemiologik osoyishtalik va jamoat salomatligi boshqarmasi</p>
+					<a href="https://t.me/oltinsoysanepid">A'zo bo'lish</a>
+				</div>
+				<a href="https://t.me/oltinsoysanepid" class="article--otherItem__link"></a>
+			</article>
+		</div>
+		<h3>Tasodifiy maqolalar</h3>
+		<div class="slider-list">
+			<div class="slider-list__item">
+				{% for post in random_posts %}
+					<article class="article--other__item">
+						<div class="article--otherItem__img">
+							<img src="{{post.image.url}}" alt="" />
+							<span>{{post.category.name}}</span>
+						</div>
+						<h4>
+							{{post.title}}
+						</h4>
+						<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--otherItem__link"></a>
+					</article>
+				{% endfor %}
+			</div>
+			<div class="slider-list__item">
+				{% for post in random_posts %}
+					<article class="article--other__item">
+						<div class="article--otherItem__img">
+							<img src="{{post.image.url}}" alt="" />
+							<span>{{post.category.name}}</span>
+						</div>
+						<h4>
+							{{post.title}}
+						</h4>
+						<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--otherItem__link"></a>
+					</article>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="slider-controllers">
+			<button type="button" class="slider-btn prevv icon-Circlechevrone"></button>
+			<button type="button" class="slider-btn nextt icon-Circlechevrone"></button>
+		</div>
+	</div>
+</section>
+
+<section class="popular container">
+	<div class="popular__theme">
+		<h3>Mashhur maqolalar</h3>
+		<a href="#!">Barchani ko'rish</a>
+	</div>
+	<div class="slider container">
+		<div class="slider-list">
+			<div class="slider-list__item popular--list__item">
+				{% for post in top_posts %}
+					<article class="popular--item">
+						<div class="popular--item__img">
+							<img src="{{post.image.url}}" alt="" />
+							<a href="{% url 'posts_by_category' post.category.slug %}">{{post.category.name}}</a>
+						</div>
+						<div class="popular--lastItem__details">
+							<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}">{{post.title}}</a>
+							<div class="popilar--details--other">
+								<p><span>{{post.author}}</span> - {{post.created_at}}</p>
+								<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--last__comment icon-comment">
+									<span>{{post.views}}</span></a>
+							</div>
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+			<div class="slider-list__item popular--list__item">
+				{% for post in top_posts %}
+					<article class="popular--item">
+						<div class="popular--item__img">
+							<img src="{{post.image.url}}" alt="" />
+							<a href="{% url 'posts_by_category' post.category.slug %}">{{post.category.name}}</a>
+						</div>
+						<div class="popular--lastItem__details">
+							<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}">{{post.title}}</a>
+							<div class="popilar--details--other">
+								<p><span>{{post.author}}</span> - {{post.created_at}}</p>
+								<a href="{% url 'post_detail' post.created_at.year post.created_at.month post.created_at.day post.slug %}" class="article--last__comment icon-comment">
+									<span>{{post.views}}</span></a>
+							</div>
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="slider-controllers">
+			<button type="button" class="slider-btn prevv icon-Circlechevrone"></button>
+			<button type="button" class="slider-btn nextt icon-Circlechevrone"></button>
+		</div>
+	</div>
+</section>
+{% endblock %}
