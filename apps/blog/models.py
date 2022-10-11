@@ -24,10 +24,11 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='post-images/')
     featured = models.BooleanField(default=False)
     content = RichTextField()
+    description = models.CharField(max_length=200)
     views = models.PositiveIntegerField(default=0)
     slug = models.SlugField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
